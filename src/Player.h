@@ -16,7 +16,7 @@ public:
 	Player();
 	string name;
 	int cards[52] = {0};
-	int cardCoubt = 0;
+	int cardCount = 0;
 };
 
 #endif /* SRC_PLAYER_H_ */
