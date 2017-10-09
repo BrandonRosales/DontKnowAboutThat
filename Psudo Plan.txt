@@ -1,0 +1,15 @@
+1.  Choose number of players (DONE)
+2.  Deal the cards to the players (Done)
+3.  Put removed cards (remainder) into pile.
+4.  Somebody starts. WHO STARTS? players[0] -> from there
+5.  Psudo Code:
+		For each card A-K starting w/ players[0] they
+		may play 1-4 cards, only the specific card for
+		that player is "good" though.
+6.  Other players have 5 seconds to respond, or not.
+7.  If players doubt it, and right OG player gets all cards
+	in pile.  If wrong, CALLER gets all of pile.
+8.  If player has no more cards go to 10.
+9.  repeat 5-7, except w/ next player in line.
+10.	Round over next player to start is next player in line.
+11. Repeat 2-11. Forever.
