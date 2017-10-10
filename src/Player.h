@@ -20,6 +20,7 @@ public:
 	int cardCount = 0;
 
 	string cardsToString();
+	bool removeCard(int cardNumber);
 };
 
 #endif /* SRC_PLAYER_H_ */

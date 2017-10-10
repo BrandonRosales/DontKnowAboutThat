@@ -26,7 +26,7 @@ public:
 	string cardsInPileToString();
 	void dealCards();
 	void playGame();
-	void displayPlayerOptions(Player &player);
+	bool submitCards(int numberActivated, Player &playerr, string cardsToSubmit);
 };
 
 #endif /* DKATGAME_H_ */

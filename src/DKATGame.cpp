@@ -10,7 +10,7 @@
  /*
   * Checks the amount of players in a game
   */
-DKATGame::DKATGame(int numberOfPlayers) : playerNumber(numberOfPlayers), cardPile{0} {
+DKATGame::DKATGame(int numberOfPlayers) : playerNumber(numberOfPlayers), cardPile{ 0 } {
 	if (numberOfPlayers >= 3) {
 		cout << this->playerNumber << " Players are in the game" << endl;
 
@@ -20,6 +20,7 @@ DKATGame::DKATGame(int numberOfPlayers) : playerNumber(numberOfPlayers), cardPil
 		}
 
 		dealCards();
+		playGame();
 	}
 	else {
 		cout << "There needs to be at least 3 people to play this game!"
@@ -56,7 +57,7 @@ void DKATGame::dealCards() {
 				premainingCardsPulled[remainingCardsPulledCurrentLength++] = cardPulled;
 				//
 				cardPile[cardPileCount++] = cardPulled;
-				cout << cardPulled << " was added to the card pile"<<endl;
+				cout << cardPulled << " was added to the card pile" << endl;
 				break;
 			}
 
@@ -107,16 +108,15 @@ void DKATGame::dealCards() {
 	}
 
 	/////// for demonstration purposes only
-	for (int i = 0; i < playerNumber;i++) {
-		cout <<i<<" : "<< players[i].cardsToString()<<endl;
+	for (int i = 0; i < playerNumber; i++) {
+		cout << i << " : " << players[i].cardsToString() << endl;
 	}
 
 	cout << cardsInPileToString() << endl;
 
 	cout << "This is how many cards that have been removed: " << remainingCardsPulledCurrentLength << endl;
-	
+
 	/////// for demonstration purposes only
-	playGame();
 
 	//potentially move to deconstructor.
 	delete premainingCardsPulled;
@@ -134,10 +134,56 @@ string DKATGame::cardsInPileToString() {
 	return ss.str();
 }
 
-void DKATGame::displayPlayerOptions(Player &player) {
-	cout << "\n\n"<<player.cardsToString()<<endl;
-	cout << player.name << "'s options:" << endl;
-	cout << endl;
+bool DKATGame::submitCards(int numberActivated, Player &player, string cardsToSubmit) {
+	cout << "Submiting card: " << cardsToSubmit << endl;
+	int cardsSubmitted[4] = { 0 };
+	int numberOfCardsSubmitted = 0;
+
+	//reads string input and puts it into cardsSubmitted array as integers;
+	size_t pos = 0;  //LEARN MORE ABOUT SIZE_T
+	string token;
+	stringstream ss;
+	// Will need a try catch here.
+	while ((pos = cardsToSubmit.find(",")) != std::string::npos) { //Stops so it doesn't go pass EOF 
+		if (numberOfCardsSubmitted == 3) { //or if there have been 3 tokens submitted already.
+			cout << "You can not submit more than 4 cards!"<<endl;
+			return false;
+		}
+
+		token = cardsToSubmit.substr(0, pos);
+		ss << token;
+		ss >> cardsSubmitted[numberOfCardsSubmitted++];
+		ss.clear();
+		ss.str(string()); // empties string stream buffer
+		cardsToSubmit.erase(0,pos+1); //Moves the buffer to the start of the next number
+	}
+	ss << cardsToSubmit;
+	ss >> cardsSubmitted[numberOfCardsSubmitted++];
+
+	/*
+	*Compares each card in the array to each card in the players hand
+	*/
+	for (int j = 0; j < numberOfCardsSubmitted; j++) {
+		bool doesThisCardPass = false;
+		for (int i = 0; i < player.cardCount; i++) {
+			if (player.cards[i] == cardsSubmitted[j]) {
+				doesThisCardPass = true;
+				break;
+			}
+		}
+		if (doesThisCardPass == false) {
+			return false;
+		}
+	}
+
+	//Removes Cards
+	for (int i = 0; i < numberOfCardsSubmitted;i++) {
+		player.removeCard(cardsSubmitted[i]);
+		cardPile[cardPileCount++] = cardsSubmitted[i];
+		cout << cardsSubmitted[i] << " was added to the card pile" << endl;
+	}
+
+	return true;
 }
 
 void DKATGame::playGame() {
@@ -146,11 +192,27 @@ void DKATGame::playGame() {
 
 	do { // set to run once
 		for (int i = 1; i <= 13; i++) {
-			cout << "It is player " << playersTurn << " turn!"<<endl;
+			cout << "\n" << endl;
+			cout << cardsInPileToString()<<endl;
+			cout << "It is player " << playersTurn << " turn!" << endl;
 			cout << "the active card to play is : " << i << endl;
-			displayPlayerOptions(players[playersTurn]);
+
+			cout << players[playersTurn].cardsToString() << endl;
+			cout << players[playersTurn].name << ", which cards would you like to submit? (seperate with ',')" << endl;
+			string cardsToSubmit;
+			cin >> cardsToSubmit; // need to run a check for this (assume all is okay for now)
+
+			while (!submitCards(i, players[playersTurn],cardsToSubmit))
+			{
+				cout << "Your input was not accepted, try again." << endl;
+				cin >> cardsToSubmit;
+			}
+
+			//wait a couple seconds for a response.
+
+
 			playersTurn++;
-			if (playersTurn==playerNumber) {
+			if (playersTurn == playerNumber) {
 				playersTurn = 0;
 			}
 			//winner if statement here + break
