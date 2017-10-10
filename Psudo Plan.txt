@@ -1,7 +1,7 @@
 1.  Choose number of players (DONE)
 2.  Deal the cards to the players (Done)
-3.  Put removed cards (remainder) into pile.
-4.  Somebody starts. WHO STARTS? players[0] -> from there
+3.  Put removed cards (remainder) into pile. (Done)
+4.  Somebody starts. WHO STARTS? players[0] -> from there (Done)
 5.  Psudo Code:
 		For each card A-K starting w/ players[0] they
 		may play 1-4 cards, only the specific card for
@@ -13,3 +13,6 @@
 9.  repeat 5-7, except w/ next player in line.
 10.	Round over next player to start is next player in line.
 11. Repeat 2-11. Forever.
+
+
+*NOTE* I think there should be a car object, as you suggested earlier.  We can keep the way the cards are distributed, but make a slight variation.  I believe in our Cards object, we have a static const array containing 1-52 in it, with the objects completed.  The card object will contain: CardNumber,Suit and Value.  There may be variations, obviously enums will need to be put in, possibly a comparable method.
