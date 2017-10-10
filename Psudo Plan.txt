@@ -15,4 +15,4 @@
 11. Repeat 2-11. Forever.
 
 
-*NOTE* I think there should be a car object, as you suggested earlier.  We can keep the way the cards are distributed, but make a slight variation.  I believe in our Cards object, we have a static const array containing 1-52 in it, with the objects completed.  The card object will contain: CardNumber,Suit and Value.  There may be variations, obviously enums will need to be put in, possibly a comparable method.
+*NOTE* I think there should be a card object, as you suggested earlier.  We can keep the way the cards are distributed, but make a slight variation.  I believe in our Cards object, we have a static const array containing 1-52 in it, with the objects completed.  The card object will contain: CardNumber,Suit and Value.  There may be variations, obviously enums will need to be put in, possibly a comparable method.
