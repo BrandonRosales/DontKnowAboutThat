@@ -2,10 +2,9 @@
 2.  Deal the cards to the players (Done)
 3.  Put removed cards (remainder) into pile. (Done)
 4.  Somebody starts. WHO STARTS? players[0] -> from there (Done)
-5.  Psudo Code:
-		For each card A-K starting w/ players[0] they
-		may play 1-4 cards, only the specific card for
-		that player is "good" though.
+5.  Psudo Code: (DONE)
+		A for loop will cycle through every card starting at A and ending at K, recyling if need be.
+		A player starts by putting down 1-4 cards.  only the specific card for that player is "good" though.
 6.  Other players have 5 seconds to respond, or not.
 7.  If players doubt it, and right OG player gets all cards
 	in pile.  If wrong, CALLER gets all of pile.
