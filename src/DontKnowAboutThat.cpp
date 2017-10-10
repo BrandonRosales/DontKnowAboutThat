@@ -8,5 +8,6 @@ int main() {
 
 	DKATGame game(dealer.introduction());
 
+	system("pause");
 	return 0;
 }

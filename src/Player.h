@@ -8,6 +8,7 @@
 #ifndef SRC_PLAYER_H_
 #define SRC_PLAYER_H_
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -17,6 +18,8 @@ public:
 	string name;
 	int cards[52] = {0};
 	int cardCount = 0;
+
+	string cardsToString();
 };
 
 #endif /* SRC_PLAYER_H_ */

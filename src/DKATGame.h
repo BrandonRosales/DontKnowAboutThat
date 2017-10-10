@@ -10,17 +10,23 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <sstream>
 #include "Player.h"
 
 using namespace std;
 
-class DKATGame {
-	int playerNumber;
+class DKATGame	 {
 public:
+	int playerNumber;
 	Player players[8];
-	int activeCardNumber = 1;
+	int cardPile[52];
+	int cardPileCount = 0;
+
 	DKATGame(int numberOfPlayers);
+	string cardsInPileToString();
 	void dealCards();
+	void playGame();
+	void displayPlayerOptions(Player &player);
 };
 
 #endif /* DKATGAME_H_ */

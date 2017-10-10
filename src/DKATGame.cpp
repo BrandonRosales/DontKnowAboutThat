@@ -7,10 +7,10 @@
 
 #include "DKATGame.h"
 
-/*
- * Checks the ammount of players in a game
- */
-DKATGame::DKATGame(int numberOfPlayers) : playerNumber(numberOfPlayers) {
+ /*
+  * Checks the amount of players in a game
+  */
+DKATGame::DKATGame(int numberOfPlayers) : playerNumber(numberOfPlayers), cardPile{0} {
 	if (numberOfPlayers >= 3) {
 		cout << this->playerNumber << " Players are in the game" << endl;
 
@@ -20,9 +20,10 @@ DKATGame::DKATGame(int numberOfPlayers) : playerNumber(numberOfPlayers) {
 		}
 
 		dealCards();
-	} else {
+	}
+	else {
 		cout << "There needs to be at least 3 people to play this game!"
-				<< endl;
+			<< endl;
 	}
 }
 /**
@@ -50,9 +51,12 @@ void DKATGame::dealCards() {
 					cardAlreadyPulled = true;
 				}
 			}
-			if(!cardAlreadyPulled){
+			if (!cardAlreadyPulled) {
 				cout << "The " << cardPulled << " was pulled" << endl;
 				premainingCardsPulled[remainingCardsPulledCurrentLength++] = cardPulled;
+				//
+				cardPile[cardPileCount++] = cardPulled;
+				cout << cardPulled << " was added to the card pile"<<endl;
 				break;
 			}
 
@@ -64,13 +68,13 @@ void DKATGame::dealCards() {
 
 		// CHECKS TO SEE IF CARD HAS BEEN REMOVED FROM ARRAY
 		bool cardHasBeenRemoved = false;
-		for(int j=0;j<remainingCards;j++){
-			if(premainingCardsPulled[j]==i){
+		for (int j = 0; j < remainingCards; j++) {
+			if (premainingCardsPulled[j] == i) {
 				cardHasBeenRemoved = true;
 				cout << i << " has been removed *****" << endl;
 			}
 		}
-		if(cardHasBeenRemoved){
+		if (cardHasBeenRemoved) {
 			continue;
 		}
 		//// Check card removed claus end.
@@ -80,28 +84,77 @@ void DKATGame::dealCards() {
 		while (true) {
 			if (players[randomedPlayer].cardCount != numberOfCardsPerPlayer) {
 				players[randomedPlayer].cards[players[randomedPlayer].cardCount++] =
-						i;
+					i;
 				cout << i << " goes to player " << randomedPlayer << endl;
 				break;
-			} else {
+			}
+			else {
 				randomedPlayer = rand() % playerNumber;
 
-//				//This else statement will pass the card to the person who goes after the current player.
-//				randomedPlayer++;
-//				if (randomedPlayer >= playerNumber) {
-//					// If the card is passed to a player above the threshold, it gets passed to the first player.
-//					randomedPlayer = 0;
-//				}
+				//				//This else statement will pass the card to the person who goes after the current player.
+				//				randomedPlayer++;
+				//				if (randomedPlayer >= playerNumber) {
+				//					// If the card is passed to a player above the threshold, it gets passed to the first player.
+				//					randomedPlayer = 0;
+				//				}
 			}
 		}
 
 	}
 	for (int i = 0; i < playerNumber; i++) {
 		cout << "Player " << i << " has " << players[i].cardCount
-				<< " many cards." << endl;
+			<< " many cards." << endl;
 	}
 
-	cout<<"This is how many cards that have been removed: "<<remainingCardsPulledCurrentLength;
+	/////// for demonstration purposes only
+	for (int i = 0; i < playerNumber;i++) {
+		cout <<i<<" : "<< players[i].cardsToString()<<endl;
+	}
 
+	cout << cardsInPileToString() << endl;
+
+	cout << "This is how many cards that have been removed: " << remainingCardsPulledCurrentLength << endl;
+	
+	/////// for demonstration purposes only
+	playGame();
+
+	//potentially move to deconstructor.
 	delete premainingCardsPulled;
+}
+
+/**
+* Returns the cards currently in the pile in a string
+*/
+string DKATGame::cardsInPileToString() {
+	stringstream ss;
+	ss << "Card Pile: ";
+	for (int i = 0; i < cardPileCount; i++) {
+		ss << cardPile[i] << " ";
+	}
+	return ss.str();
+}
+
+void DKATGame::displayPlayerOptions(Player &player) {
+	cout << "\n\n"<<player.cardsToString()<<endl;
+	cout << player.name << "'s options:" << endl;
+	cout << endl;
+}
+
+void DKATGame::playGame() {
+	bool haveAWinner = false;
+	int playersTurn = 0;
+
+	do { // set to run once
+		for (int i = 1; i <= 13; i++) {
+			cout << "It is player " << playersTurn << " turn!"<<endl;
+			cout << "the active card to play is : " << i << endl;
+			displayPlayerOptions(players[playersTurn]);
+			playersTurn++;
+			if (playersTurn==playerNumber) {
+				playersTurn = 0;
+			}
+			//winner if statement here + break
+		}
+	} while (haveAWinner);
+
 }
