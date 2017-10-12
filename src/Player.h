@@ -9,6 +9,7 @@
 #define SRC_PLAYER_H_
 #include <iostream>
 #include <sstream>
+#include "Card.h"
 
 using namespace std;
 
@@ -16,11 +17,15 @@ class Player {
 public:
 	Player();
 	string name;
-	int cards[52] = {0};
+	Card cards[52] = {0};
 	int cardCount = 0;
 
-	string cardsToString();
-	bool removeCard(int cardNumber);
+	string cardNumbersToString();
+	string cardNamesToString();
+
+	int findCardIndexInHand(string cardName);
+	bool removeCard(string cardName);
+	//bool removeCard(int cardNumber);
 };
 
 #endif /* SRC_PLAYER_H_ */

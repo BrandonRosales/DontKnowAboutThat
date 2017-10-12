@@ -11,7 +11,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <sstream>
+#include "Card.h"
+#include "CardPile.h"
 #include "Player.h"
+
+
 
 using namespace std;
 
@@ -19,13 +23,16 @@ class DKATGame	 {
 public:
 	int playerNumber;
 	Player players[8];
-	int cardPile[52];
-	int cardPileCount = 0;
+	CardPile cardPile;
+	string lastCardsSubmitted[4];
+	int lastNumberOfCardsSubmitted;
 
 	DKATGame(int numberOfPlayers);
-	string cardsInPileToString();
 	void dealCards();
 	void playGame();
+	void playerSubmitsCards(int activeCard, int activePlayer);
+	void playerResponses(int activeCard, int activePlayer);
+	bool challengePlayer(int activeCard, int activePlayer, int challengingPlayer);
 	bool submitCards(int numberActivated, Player &playerr, string cardsToSubmit);
 };
 

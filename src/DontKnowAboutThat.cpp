@@ -4,6 +4,8 @@
 using namespace std;
 
 int main() {
+	Card::buildCards(); // Builds the playing cards
+
 	Dealer dealer;
 
 	DKATGame game(dealer.introduction());
