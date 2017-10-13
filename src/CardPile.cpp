@@ -24,3 +24,20 @@ string CardPile::cardsNamesToString() {
 	}
 	return ss.str();
 }
+
+void CardPile::givePileToPlayer(Player &player) {
+	for (int i = 0; i < cardCount; i++) {
+		player.addCard(cards[i], true);
+	}
+	//empty pile here
+	empty();
+
+}
+
+void CardPile::empty() {
+	for (int i = 0; i < cardCount; i++) {
+		cards[i] = 0;
+	}
+	cardCount = 0;
+}
+

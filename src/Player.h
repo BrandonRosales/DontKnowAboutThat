@@ -24,7 +24,11 @@ public:
 	string cardNamesToString();
 
 	int findCardIndexInHand(string cardName);
+	int findAmountOfValueInHand(int value);
+	void addCard(Card cardToAdd, bool sort);
 	bool removeCard(string cardName);
+	void sortByID();
+	void sortByValue();
 	//bool removeCard(int cardNumber);
 };
 

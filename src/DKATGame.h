@@ -21,6 +21,9 @@ using namespace std;
 
 class DKATGame	 {
 public:
+	bool onePlayerRun;
+	int playerOneRunPlayerNumber;
+
 	int playerNumber;
 	Player players[8];
 	CardPile cardPile;
@@ -30,10 +33,12 @@ public:
 	DKATGame(int numberOfPlayers);
 	void dealCards();
 	void playGame();
+	void displayActiveNumberAndPlayer(int activeCardNumber, int activePlayer);
 	void playerSubmitsCards(int activeCard, int activePlayer);
+	bool processingSubmitCards(int numberActivated, Player &playerr, string cardsToSubmit);
 	void playerResponses(int activeCard, int activePlayer);
+	bool shouldTheBotChallenge(int activeCardNumber, int activePlayer, int botNumber);
 	bool challengePlayer(int activeCard, int activePlayer, int challengingPlayer);
-	bool submitCards(int numberActivated, Player &playerr, string cardsToSubmit);
 };
 
 #endif /* DKATGAME_H_ */

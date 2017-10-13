@@ -28,6 +28,14 @@ string Player::cardNamesToString() {
 	return ss.str();
 }
 
+void Player::addCard(Card cardToAdd,bool sort) {
+	cards[cardCount++]=cardToAdd;
+	if (sort) {
+		sortByValue();
+
+	}
+}
+
 
 bool Player::removeCard(string cardName) {
 	for (int i = 0; i < cardCount;i++) {
@@ -43,6 +51,28 @@ bool Player::removeCard(string cardName) {
 	return false;
 }
 
+void Player::sortByID() {
+	for (int i = 0; i < cardCount - 1; i++) {
+		if (cards[i].ID>(cards[i + 1]).ID) {
+			Card tempCard = cards[i];
+			cards[i] = cards[i + 1];
+			cards[i + 1] = tempCard;
+			i = -1;
+		}
+	}
+}
+
+void Player::sortByValue() {
+	for (int i = 0; i < cardCount - 1; i++) {
+		if (cards[i].value>(cards[i + 1]).value) {
+			Card tempCard = cards[i];
+			cards[i] = cards[i + 1];
+			cards[i + 1] = tempCard;
+			i = -1;
+		}
+	}
+}
+
 int Player::findCardIndexInHand(string cardName) {
 	for (int i = 0; i < cardCount; i++) {
 		if (cardName == cards[i].name) {
@@ -50,6 +80,16 @@ int Player::findCardIndexInHand(string cardName) {
 		}
 	}
 	return -1;
+}
+
+int Player::findAmountOfValueInHand(int value) {
+	int amountOfCardsWithValue = 0;
+	for (int i = 0; i < cardCount; i++) {
+		if (cards[i].value==value) {
+			amountOfCardsWithValue++;
+		}
+	}
+	return amountOfCardsWithValue;
 }
 
 //bool Player::removeCard(int cardNumber) {

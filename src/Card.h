@@ -14,7 +14,7 @@ public:
 	Card(int number);
 	int ID;
 	SUITS suit;
-	int numberValue;
+	int value;
 	string name;
 
 	static Card ALLCARDS[52];
@@ -28,5 +28,7 @@ public:
 
 
 };
+
+
 
 #endif /* SRC_CARD_H_ */

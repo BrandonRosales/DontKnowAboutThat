@@ -3,7 +3,7 @@ Card::Card() {
 
 
 }
-Card::Card(int cardNumber):ID(cardNumber),numberValue(0),name(""),suit(SUITS::NONE) {
+Card::Card(int cardNumber):ID(cardNumber),value(0),name(""),suit(SUITS::NONE) {
 
 }
 
@@ -14,7 +14,7 @@ int Card::findCardValue(string cardName) {
 	for (int i = 0; i < 52; i++) {
 		if (cardName==ALLCARDS[i].name) {
 			//cout << "Card name: " << cardName << " was found at index "<<i<<" which's card ID is: "<<ALLCARDS[i].ID<<" the value is: "<<ALLCARDS[i].numberValue<< endl;
-			return ALLCARDS[i].numberValue;
+			return ALLCARDS[i].value;
 		}
 	}
 
@@ -46,55 +46,55 @@ void Card::buildCards() {
 	for (int i = 0; i < 52; i++) {
 		switch ((i+1) % 13) {//The +1 displaces the 0 index
 		case 1:
-			ALLCARDS[i].numberValue = 1;
+			ALLCARDS[i].value = 1;
 			ALLCARDS[i].name += "A";
 			break;
 		case 2:
-			ALLCARDS[i].numberValue = 2;
+			ALLCARDS[i].value = 2;
 			ALLCARDS[i].name += "2";
 			break;
 		case 3:
-			ALLCARDS[i].numberValue = 3;
+			ALLCARDS[i].value = 3;
 			ALLCARDS[i].name += "3";
 			break;
 		case 4:
-			ALLCARDS[i].numberValue = 4;
+			ALLCARDS[i].value = 4;
 			ALLCARDS[i].name += "4";
 			break;
 		case 5:
-			ALLCARDS[i].numberValue = 5;
+			ALLCARDS[i].value = 5;
 			ALLCARDS[i].name += "5";
 			break;
 		case 6:
-			ALLCARDS[i].numberValue = 6;
+			ALLCARDS[i].value = 6;
 			ALLCARDS[i].name += "6";
 			break;
 		case 7:
-			ALLCARDS[i].numberValue = 7;
+			ALLCARDS[i].value = 7;
 			ALLCARDS[i].name += "7";
 			break;
 		case 8:
-			ALLCARDS[i].numberValue = 8;
+			ALLCARDS[i].value = 8;
 			ALLCARDS[i].name += "8";
 			break;
 		case 9:
-			ALLCARDS[i].numberValue = 9;
+			ALLCARDS[i].value = 9;
 			ALLCARDS[i].name += "9";
 			break;
 		case 10:
-			ALLCARDS[i].numberValue = 10;
+			ALLCARDS[i].value = 10;
 			ALLCARDS[i].name += "10";
 			break;
 		case 11:
-			ALLCARDS[i].numberValue = 11;
+			ALLCARDS[i].value = 11;
 			ALLCARDS[i].name += "J";
 			break;
 		case 12:
-			ALLCARDS[i].numberValue = 12;
+			ALLCARDS[i].value = 12;
 			ALLCARDS[i].name += "Q";
 			break;
 		case 0:
-			ALLCARDS[i].numberValue = 13;
+			ALLCARDS[i].value = 13;
 			ALLCARDS[i].name += "K";
 			break;
 		}
