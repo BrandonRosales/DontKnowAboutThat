@@ -5,13 +5,12 @@
 5.  Psudo Code: (DONE)
 		A for loop will cycle through every card starting at A and ending at K, recyling if need be.
 		A player starts by putting down 1-4 cards.  only the specific card for that player is "good" though.
-6.  Other players have 5 seconds to respond, or not.
-7.  If players doubt it, and right OG player gets all cards
-	in pile.  If wrong, CALLER gets all of pile.
-8.  If player has no more cards go to 10.
-9.  repeat 5-7, except w/ next player in line.
+6.  Other players have 5 seconds to respond, or not. (Single Players portion done)
+7.  If players doubt it, and right OG player gets all cards (Done)
+	in pile.  If wrong, CALLER gets all of pile. 
+8.  If player has no more cards go to 10. (Done)
+9.  repeat 5-7, except w/ next player in line. (Done)
 10.	Round over next player to start is next player in line.
-11. Repeat 2-11. Forever.
+11. Repeat 2-11. Forever. (Done)
 
-
-*NOTE* I think there should be a card object, as you suggested earlier.  We can keep the way the cards are distributed, but make a slight variation.  I believe in our Cards object, we have a static const array containing 1-52 in it, with the objects completed.  The card object will contain: CardNumber,Suit and Value.  There may be variations, obviously enums will need to be put in, possibly a comparable method.
+12. Move the command prompt version to a GUI.
