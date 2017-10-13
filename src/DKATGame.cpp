@@ -369,12 +369,14 @@ bool DKATGame::challengePlayer(int activeCardNumber, int activePlayer, int chall
 		cout << "Comparing active card number " << activeCardNumber << " to previous card accepted " << Card::ALLCARDS->findCardValue(lastCardsSubmitted[i]) << endl;
 		if (Card::ALLCARDS->findCardValue(lastCardsSubmitted[i]) != activeCardNumber) {
 			cout << "---===A card failed to match!===---" << endl;
+			cout << players[activePlayer].name << " added all " << cardPile.cardCount << " from the pile to their hand!" << endl;
 			cardPile.givePileToPlayer(players[activePlayer]);
 			return true;
 		}
 	}
 	//If it gets here then the active player played ALL acceptable cards
 	cout << "---===ALL CARDS MATCHED!===---" << endl;
+	cout << players[challengingPlayer].name << " added all " << cardPile.cardCount << " from the pile to their hand!" << endl;
 	cardPile.givePileToPlayer(players[challengingPlayer]);
 	return false;
 }
