@@ -10,7 +10,8 @@
 	in pile.  If wrong, CALLER gets all of pile. 
 8.  If player has no more cards go to 10. (Done)
 9.  repeat 5-7, except w/ next player in line. (Done)
-10.	Round over next player to start is next player in line.
+10. Round over next player to start is next player in line. (Done)
 11. Repeat 2-11. Forever. (Done)
 
-12. Move the command prompt version to a GUI.
+12. Switch over to server/client use. (DONE)
+13. Move the command prompt version to a GUI.
