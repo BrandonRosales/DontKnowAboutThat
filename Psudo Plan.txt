@@ -14,4 +14,4 @@
 11. Repeat 2-11. Forever. (Done)
 
 12. Switch over to server/client use. (DONE)
-13. Move the command prompt version to a GUI.
+13. Move the command prompt version to a GUI. (DONE)
